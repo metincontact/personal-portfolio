@@ -2,11 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: #0f172a;
-  color: white;
-  background: radial-gradient(circle at top left, #0f172a, #020617);
-}
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white dark:bg-slate-900;
 }
