@@ -21,13 +21,31 @@ const PROJECTS = [
     tags: ["React", "API"],
   },
   {
-    title: "Amazon Clone",
+    title: "Job Tracker",
     description:
-      "JavaScript e-commerce clone replicating core Amazon UI and cart functionality.",
-    image: null,
-    live: null,
-    github: "https://github.com/metincontact/amazon-clone",
-    tags: ["JavaScript", "HTML", "CSS"],
+      "Personal job application tracker with status management, filtering, and localStorage persistence.",
+    image: "/job-tracker.png",
+    live: "https://job-tracker-matin.vercel.app",
+    github: "https://github.com/metincontact/job-tracker",
+    tags: ["React", "TypeScript", "Tailwind CSS"],
+  },
+  {
+    title: "GitHub Explorer",
+    description:
+      "Search any GitHub profile and explore repositories with stars, forks, and language info.",
+    image: "/github-explorer.png",
+    live: "https://github-explorer-matin.vercel.app",
+    github: "https://github.com/metincontact/github-explorer",
+    tags: ["React", "TypeScript", "React Router", "GitHub API"],
+  },
+  {
+    title: "Weather Dashboard",
+    description:
+      "Real-time weather app with 5-day forecast chart using OpenWeather API.",
+    image: "/weather-dashboard.png",
+    live: "https://weather-dashboard-matin.vercel.app",
+    github: "https://github.com/metincontact/weather-dashboard",
+    tags: ["React", "TypeScript", "Recharts", "OpenWeather API"],
   },
 ];
 
