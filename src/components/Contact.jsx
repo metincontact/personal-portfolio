@@ -2,9 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 
-// Formspree kullanmak için: https://formspree.io adresine gir,
-// ücretsiz hesap aç ve form oluştur. Gelen endpoint'i aşağıya yaz.
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mlgzkvva";
 
 const SOCIALS = [
   {
@@ -20,7 +18,7 @@ const SOCIALS = [
   {
     icon: <FaLinkedin />,
     label: "linkedin.com/in/metin-memmedli",
-    href: "https://www.linkedin.com/in/metin-memmedli-ba2772393/",
+    href: "https://www.linkedin.com/in/matin-mammadli-dev/",
   },
 ];
 
