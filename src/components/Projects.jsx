@@ -47,6 +47,15 @@ const PROJECTS = [
     github: "https://github.com/metincontact/weather-dashboard",
     tags: ["React", "TypeScript", "Recharts", "OpenWeather API"],
   },
+  {
+    title: "Crypto Tracker",
+    description:
+      "Real-time cryptocurrency tracker with 7-day price charts, search, and favorites. Built with CoinGecko API.",
+    image: "/crypto-tracker.png",
+    live: "https://crypto-tracker-matin.vercel.app",
+    github: "https://github.com/metincontact/crypto-tracker",
+    tags: ["React", "TypeScript", "Recharts", "CoinGecko API"],
+  },
 ];
 
 const cardVariants = {
