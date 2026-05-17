@@ -15,11 +15,11 @@ const PROJECTS = [
   {
     title: "Chatbot",
     description:
-      "AI-powered chatbot UI built with React, featuring real-time message rendering.",
+      "AI-powered chatbot built with React and Google Gemini API. Supports real-time conversation with context memory.",
     image: "/chatbot.png",
     live: "https://metin-chatbot.vercel.app",
     github: "https://github.com/metincontact/chatbot",
-    tags: ["React", "API"],
+    tags: ["React", "Gemini API", "Tailwind CSS"],
   },
   {
     title: "Job Tracker",
