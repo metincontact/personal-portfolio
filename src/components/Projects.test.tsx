@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Projects from "./Projects";
 
@@ -46,5 +46,26 @@ describe("Projects", () => {
 
     expect(screen.getByText("No Preview")).toBeInTheDocument();
     expect(screen.queryByAltText("E-Commerce Website")).not.toBeInTheDocument();
+  });
+
+  it("opens the case study modal and closes it with Escape", async () => {
+    const user = userEvent.setup();
+    render(<Projects />);
+
+    await user.click(
+      screen.getByRole("button", { name: "Case Study: E-Commerce Website" }),
+    );
+
+    const dialog = screen.getByRole("dialog", { name: "E-Commerce Website" });
+    expect(dialog).toBeInTheDocument();
+    expect(screen.getByText("Why I built it")).toBeInTheDocument();
+    expect(screen.getByText("What I learned")).toBeInTheDocument();
+
+    await user.keyboard("{Escape}");
+    await waitFor(() =>
+      expect(
+        screen.queryByRole("dialog", { name: "E-Commerce Website" }),
+      ).not.toBeInTheDocument(),
+    );
   });
 });

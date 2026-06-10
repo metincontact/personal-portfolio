@@ -6,6 +6,13 @@ afterEach(() => {
   cleanup();
 });
 
+// default network stub so components never hit the real network in tests;
+// individual test files override this with their own mocks
+vi.stubGlobal(
+  "fetch",
+  vi.fn(() => Promise.resolve({ ok: false, json: async () => ({}) })),
+);
+
 // jsdom does not implement matchMedia (used for the prefers-color-scheme fallback)
 Object.defineProperty(window, "matchMedia", {
   writable: true,
@@ -20,6 +27,9 @@ Object.defineProperty(window, "matchMedia", {
     dispatchEvent: vi.fn(),
   })),
 });
+
+// jsdom does not implement scrollIntoView (used by the command palette)
+Element.prototype.scrollIntoView = vi.fn();
 
 // jsdom does not implement IntersectionObserver (used by framer-motion whileInView)
 class IntersectionObserverMock {

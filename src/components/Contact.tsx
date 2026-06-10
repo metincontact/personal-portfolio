@@ -1,9 +1,20 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { FiArrowUpRight } from "react-icons/fi";
 import { SOCIALS } from "../data/portfolio";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mlgzkvva";
+
+const listVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, x: 24 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
+};
 
 type Status = "idle" | "sending" | "success" | "error";
 
@@ -16,6 +27,7 @@ interface FormData {
 const EMPTY_FORM: FormData = { name: "", email: "", message: "" };
 
 function ContactForm() {
+  const { t } = useLanguage();
   const [status, setStatus] = useState<Status>("idle");
   const [form, setForm] = useState<FormData>(EMPTY_FORM);
 
@@ -56,7 +68,7 @@ function ContactForm() {
       <input
         type="text"
         name="name"
-        placeholder="Your Name"
+        placeholder={t.contact.name}
         value={form.name}
         onChange={handleChange}
         required
@@ -65,7 +77,7 @@ function ContactForm() {
       <input
         type="email"
         name="email"
-        placeholder="Your Email"
+        placeholder={t.contact.email}
         value={form.email}
         onChange={handleChange}
         required
@@ -73,7 +85,7 @@ function ContactForm() {
       />
       <textarea
         name="message"
-        placeholder="Your Message"
+        placeholder={t.contact.message}
         value={form.message}
         onChange={handleChange}
         required
@@ -85,17 +97,17 @@ function ContactForm() {
         disabled={status === "sending"}
         className="w-fit rounded-full bg-zinc-900 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-zinc-700 disabled:opacity-60 dark:bg-lime-400 dark:text-zinc-950 dark:hover:bg-lime-300"
       >
-        {status === "sending" ? "Sending..." : "Send Message"}
+        {status === "sending" ? t.contact.sending : t.contact.send}
       </button>
 
       {status === "success" && (
         <p className="font-mono text-sm text-lime-700 dark:text-lime-300">
-          Message sent! I'll get back to you soon.
+          {t.contact.success}
         </p>
       )}
       {status === "error" && (
         <p className="font-mono text-sm text-red-600 dark:text-red-400">
-          Something went wrong. Please try emailing directly.
+          {t.contact.error}
         </p>
       )}
     </form>
@@ -103,6 +115,8 @@ function ContactForm() {
 }
 
 export default function Contact() {
+  const { t } = useLanguage();
+
   return (
     <motion.section
       id="contact"
@@ -113,26 +127,33 @@ export default function Contact() {
       transition={{ duration: 0.6 }}
     >
       <span className="mb-3 block font-mono text-xs uppercase tracking-[0.35em] text-lime-600 dark:text-lime-300/70">
-        04 — get in touch
+        {t.contact.eyebrow}
       </span>
       <h2 className="mb-12 text-3xl md:text-4xl font-bold tracking-tight">
-        Contact
+        {t.contact.title}
       </h2>
 
       <div className="flex flex-col gap-16 lg:flex-row">
         <div className="flex-1">
           <p className="mb-7 max-w-md text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-            Have a project in mind or just want to say hi? Fill the form below.
+            {t.contact.blurb}
           </p>
           <ContactForm />
         </div>
 
-        <div className="flex w-full flex-col gap-3 lg:w-96">
+        <motion.div
+          className="flex w-full flex-col gap-3 lg:w-96"
+          variants={listVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+        >
           {SOCIALS.map(({ icon: Icon, label, href }) => {
             const isExternal = !href.startsWith("mailto:");
             return (
-              <a
+              <motion.a
                 key={href}
+                variants={itemVariants}
                 href={href}
                 target={isExternal ? "_blank" : undefined}
                 rel={isExternal ? "noopener noreferrer" : undefined}
@@ -149,10 +170,10 @@ export default function Contact() {
                   aria-hidden="true"
                   className="text-zinc-400 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100 dark:text-zinc-500"
                 />
-              </a>
+              </motion.a>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </motion.section>
   );

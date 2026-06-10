@@ -23,6 +23,9 @@ describe("App", () => {
       screen.getByRole("heading", { name: "Projects" }),
     ).toBeInTheDocument();
     expect(
+      screen.getByRole("heading", { name: "GitHub Activity" }),
+    ).toBeInTheDocument();
+    expect(
       screen.getByRole("heading", { name: "Contact" }),
     ).toBeInTheDocument();
   });
@@ -46,5 +49,30 @@ describe("App", () => {
     render(<App />);
 
     expect(document.documentElement.classList.contains("dark")).toBe(true);
+  });
+
+  it("switches language and persists it", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    await user.click(
+      screen.getByRole("button", { name: "Change language" }),
+    );
+
+    expect(
+      screen.getByRole("heading", { name: "Hakkımda" }),
+    ).toBeInTheDocument();
+    expect(localStorage.getItem("lang")).toBe("tr");
+  });
+
+  it("opens the command palette with Ctrl+K", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    await user.keyboard("{Control>}k{/Control}");
+
+    expect(
+      screen.getByRole("dialog", { name: "Command palette" }),
+    ).toBeInTheDocument();
   });
 });

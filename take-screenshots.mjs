@@ -1,12 +1,13 @@
 import { chromium } from "playwright";
+import sharp from "sharp";
 
 const targets = [
-  ["https://metin-ecommerce.vercel.app", "public/ecommerce.png"],
-  ["https://metin-chatbot.vercel.app", "public/chatbot.png"],
-  ["https://job-tracker-matin.vercel.app", "public/job-tracker.png"],
-  ["https://github-explorer-matin.vercel.app", "public/github-explorer.png"],
-  ["https://weather-dashboard-matin.vercel.app", "public/weather-dashboard.png"],
-  ["https://crypto-tracker-matin.vercel.app", "public/crypto-tracker.png"],
+  ["https://metin-ecommerce.vercel.app", "public/ecommerce.webp"],
+  ["https://metin-chatbot.vercel.app", "public/chatbot.webp"],
+  ["https://job-tracker-matin.vercel.app", "public/job-tracker.webp"],
+  ["https://github-explorer-matin.vercel.app", "public/github-explorer.webp"],
+  ["https://weather-dashboard-matin.vercel.app", "public/weather-dashboard.webp"],
+  ["https://crypto-tracker-matin.vercel.app", "public/crypto-tracker.webp"],
 ];
 
 const browser = await chromium.launch();
@@ -19,7 +20,8 @@ for (const [url, file] of targets) {
   await page.goto(url, { waitUntil: "load", timeout: 60000 });
   // give SPAs time to fetch data and finish entrance animations
   await page.waitForTimeout(5000);
-  await page.screenshot({ path: file });
+  const png = await page.screenshot();
+  await sharp(png).webp({ quality: 82 }).toFile(file);
   console.log("saved", file);
 }
 

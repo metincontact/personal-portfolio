@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Navbar from "./Navbar";
@@ -7,14 +7,12 @@ const defaultProps = {
   scrolled: false,
   progress: 0,
   activeSection: "",
+  dark: false,
+  setDark: vi.fn(),
+  onOpenPalette: vi.fn(),
 };
 
 describe("Navbar", () => {
-  beforeEach(() => {
-    localStorage.clear();
-    document.documentElement.classList.remove("dark");
-  });
-
   it("renders all navigation links", () => {
     render(<Navbar {...defaultProps} />);
 
@@ -34,17 +32,27 @@ describe("Navbar", () => {
     );
   });
 
-  it("toggles dark mode and persists it", async () => {
+  it("calls setDark when the theme button is clicked", async () => {
     const user = userEvent.setup();
-    render(<Navbar {...defaultProps} />);
-
-    expect(document.documentElement.classList.contains("dark")).toBe(false);
+    const setDark = vi.fn();
+    render(<Navbar {...defaultProps} setDark={setDark} />);
 
     await user.click(
       screen.getByRole("button", { name: "Toggle dark mode" }),
     );
 
-    expect(document.documentElement.classList.contains("dark")).toBe(true);
-    expect(localStorage.getItem("theme")).toBe("dark");
+    expect(setDark).toHaveBeenCalledTimes(1);
+  });
+
+  it("opens the command palette from the nav button", async () => {
+    const user = userEvent.setup();
+    const onOpenPalette = vi.fn();
+    render(<Navbar {...defaultProps} onOpenPalette={onOpenPalette} />);
+
+    await user.click(
+      screen.getByRole("button", { name: "Open command palette" }),
+    );
+
+    expect(onOpenPalette).toHaveBeenCalledTimes(1);
   });
 });

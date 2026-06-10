@@ -1,5 +1,6 @@
 import { motion, type Variants } from "framer-motion";
 import { SKILL_CATEGORIES } from "../data/portfolio";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const containerVariants: Variants = {
   hidden: {},
@@ -14,6 +15,8 @@ const itemVariants: Variants = {
 };
 
 export default function Skills() {
+  const { t } = useLanguage();
+
   return (
     <section id="skills" className="py-24">
       <motion.div
@@ -23,19 +26,19 @@ export default function Skills() {
         transition={{ duration: 0.5 }}
       >
         <span className="mb-3 block font-mono text-xs uppercase tracking-[0.35em] text-lime-600 dark:text-lime-300/70">
-          02 — stack
+          {t.skills.eyebrow}
         </span>
         <h2 className="mb-12 text-3xl md:text-4xl font-bold tracking-tight">
-          Skills
+          {t.skills.title}
         </h2>
       </motion.div>
 
       <div className="flex max-w-3xl flex-col gap-10">
-        {SKILL_CATEGORIES.map(({ category, skills }) => (
-          <div key={category}>
+        {SKILL_CATEGORIES.map(({ key, skills }) => (
+          <div key={key}>
             <p className="mb-4 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.25em] text-zinc-500 dark:text-zinc-500">
               <span className="h-px w-6 bg-lime-500/60 dark:bg-lime-300/40" />
-              {category}
+              {t.skills.categories[key]}
             </p>
             <motion.div
               className="flex flex-wrap gap-2.5"

@@ -13,6 +13,7 @@
     "screenshots": "node take-screenshots.mjs"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "framer-motion": "^12.38.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
@@ -34,6 +35,7 @@
     "jsdom": "^29.1.1",
     "playwright": "^1.60.0",
     "postcss": "^8.5.10",
+    "sharp": "^0.34.5",
     "tailwindcss": "^3.4.1",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.61.0",
