@@ -6,6 +6,32 @@ html {
   scroll-behavior: smooth;
 }
 
+html.dark {
+  color-scheme: dark;
+}
+
 body {
-  @apply bg-white dark:bg-slate-900;
+  @apply bg-zinc-50 dark:bg-[#08080c] antialiased;
+}
+
+::selection {
+  background: #a3e635;
+  color: #09090b;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(82 82 91 / 0.5);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(82 82 91 / 0.8);
 }
