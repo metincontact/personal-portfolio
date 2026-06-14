@@ -33,6 +33,40 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
+    title: "Personal Finance Tracker",
+    description: {
+      en: "Full-stack finance dashboard that tracks, categorises, and visualises personal spending. REST API backend, PostgreSQL database, and a test suite covering all three layers.",
+      tr: "Harcamaları takip eden, kategorize eden ve görselleştiren full-stack finans panosu. REST API backend, PostgreSQL veritabanı ve üç katmanı kapsayan test suite.",
+      pl: "Pełnostackowy panel finansowy śledzący, kategoryzujący i wizualizujący wydatki. Backend REST API, baza danych PostgreSQL i testy obejmujące wszystkie trzy warstwy.",
+    },
+    why: {
+      en: "I wanted to go beyond frontend-only projects and ship a real production system — a proper API, a cloud database, deployments on two separate platforms, and a test suite I could actually trust.",
+      tr: "Yalnızca frontend projelerinin ötesine geçip gerçek bir production sistemi inşa etmek istedim — düzgün bir API, bulut veritabanı, iki ayrı platformda deploy ve gerçekten güvenebileceğim bir test suite.",
+      pl: "Chciałem wyjść poza projekty czysto frontendowe i zbudować prawdziwy system produkcyjny — porządne API, bazę danych w chmurze, wdrożenie na dwóch platformach i testy, którym można ufać.",
+    },
+    learned: {
+      en: [
+        "Building a REST API from scratch with Node.js, Express, and TypeScript",
+        "Database modelling and queries with Prisma ORM and PostgreSQL on Neon",
+        "Full test coverage: Jest/Supertest for the API, Vitest/RTL for components, Playwright for E2E",
+      ],
+      tr: [
+        "Node.js, Express ve TypeScript ile sıfırdan REST API geliştirme",
+        "Neon üzerinde Prisma ORM ve PostgreSQL ile veritabanı modelleme ve sorgular",
+        "Tam test kapsamı: API için Jest/Supertest, component'ler için Vitest/RTL, E2E için Playwright",
+      ],
+      pl: [
+        "Budowanie REST API od zera z Node.js, Express i TypeScript",
+        "Modelowanie bazy danych i zapytania z Prisma ORM i PostgreSQL na Neon",
+        "Pełne pokrycie testami: Jest/Supertest dla API, Vitest/RTL dla komponentów, Playwright dla E2E",
+      ],
+    },
+    image: "/finance-tracker.webp",
+    live: "https://finance-tracker-matin.vercel.app",
+    github: "https://github.com/metincontact/personal-finance-tracker",
+    tags: ["React", "TypeScript", "Node.js", "PostgreSQL", "Recharts"],
+  },
+  {
     title: "E-Commerce Website",
     description: {
       en: "Full-featured e-commerce app with product listing, cart, and checkout flow.",
@@ -243,6 +277,8 @@ export const PROJECT_FILTER_TAGS = [
   "React",
   "TypeScript",
   "JavaScript",
+  "Node.js",
+  "PostgreSQL",
   "API",
   "Supabase",
   "Recharts",
@@ -270,7 +306,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   },
   {
     key: "tools",
-    skills: ["Git", "GitHub", "Vite", "REST API", "React Router", "Recharts"],
+    skills: ["Git", "GitHub", "Vite", "REST API", "React Router", "Recharts", "Node.js", "Express", "PostgreSQL", "Prisma"],
   },
   {
     key: "learning",
