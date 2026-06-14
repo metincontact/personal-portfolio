@@ -2,6 +2,7 @@ import { chromium } from "playwright";
 import sharp from "sharp";
 
 const targets = [
+  ["https://finance-tracker-matin.vercel.app", "public/finance-tracker.webp"],
   ["https://metin-ecommerce.vercel.app", "public/ecommerce.webp"],
   ["https://metin-chatbot.vercel.app", "public/chatbot.webp"],
   ["https://job-tracker-matin.vercel.app", "public/job-tracker.webp"],
